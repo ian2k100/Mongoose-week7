@@ -8,9 +8,21 @@ const filmSchema = mongoose.Schema({
     actor:{
         type:String,
         default:'actor unknown',
-    }
-})
+    },
+    year:{
+        type:Number,
+        required:false,
+    },
+    genre:{
+        type:String,
+        required:false,
+    },
+    rating:{
+        type:String,
+        required:false,
+    },
+});
 
-const FilmModel = mongoose.model('Movies', filmSchema)
+const filmModel = mongoose.model('Movies', filmSchema)
 
-module.exports = FilmModel
+module.exports = filmModel
