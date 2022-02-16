@@ -24,12 +24,19 @@ exports.allList = async () => {
 
 exports.updateMovie = async (upMovie) => {
     try {
-            uList = await filmModel.findOneAndUpdate(
-                {name: upMovie.title, actor: upMovie.actor},
-                { $set: {name: upMovie.title, actor: upMovie.actor}}
+        if (upMovie.newtitle) {
+            await filmModel.findOneAndUpdate(
+                {name: upMovie.title},
+                { $set: {name: upMovie.newtitle}}
             );
-            await upMovie.save();
-            console.log(`Movie had been updated ${uList}`);
+            console.log(`Movie had been updated ${upMovie.newtitle}`);
+        } else if (upMovie.newactor) {
+            await filmModel.findOneAndUpdate(
+                {name: upMovie.title},
+                { $set: {actor: upMovie.newactor}}
+            );
+            console.log(`Movie actor has been updated ${upMovie.newactor}`)
+        }
     } catch (error){
         console.log(error);
     }
